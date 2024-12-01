@@ -6,9 +6,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const clearCompletedBtn = document.getElementById('clear-completed');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const loadingOverlay = document.getElementById('loading');
+    const toggleAiBtn = document.getElementById('toggle-ai');
+    const toggleManualBtn = document.getElementById('toggle-manual');
 
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     let currentFilter = 'all';
+    let isAiMode = true;
 
     function showLoading() {
         loadingOverlay.classList.add('active');
@@ -23,29 +26,55 @@ document.addEventListener('DOMContentLoaded', () => {
         updateTasksCount();
     }
 
+    function toggleMode(useAi) {
+        isAiMode = useAi;
+        document.body.classList.toggle('manual-mode', !useAi);
+        toggleAiBtn.classList.toggle('active', useAi);
+        toggleManualBtn.classList.toggle('active', !useAi);
+        
+        // تحديث النص التوضيحي والأيقونة
+        addTaskBtn.innerHTML = useAi ? '<i class="fas fa-magic"></i>' : '<i class="fas fa-plus"></i>';
+        taskInput.placeholder = useAi 
+            ? 'اكتب ما تريد تحويله إلى مهام...\nمثال: أريد تنظيم حفلة عيد ميلاد لابني'
+            : 'اكتب المهمة مباشرة...';
+    }
+
+    toggleAiBtn.addEventListener('click', () => toggleMode(true));
+    toggleManualBtn.addEventListener('click', () => toggleMode(false));
+
     async function addTasks(text) {
-        showLoading();
-        try {
-            const taskGroups = await convertToTasks(text);
-            const timestamp = Date.now();
-            
-            taskGroups.forEach((group, groupIndex) => {
-                group.tasks.forEach((taskText, index) => {
-                    tasks.unshift({
-                        id: `${timestamp}-${groupIndex}-${index}`,
-                        text: taskText,
-                        group: group.group,
-                        completed: false,
-                        createdAt: new Date().toISOString()
+        if (isAiMode) {
+            showLoading();
+            try {
+                const taskGroups = await convertToTasks(text);
+                const timestamp = Date.now();
+                
+                taskGroups.forEach((group, groupIndex) => {
+                    group.tasks.forEach((taskText, index) => {
+                        tasks.unshift({
+                            id: `${timestamp}-${groupIndex}-${index}`,
+                            text: taskText,
+                            group: group.group,
+                            completed: false,
+                            createdAt: new Date().toISOString()
+                        });
                     });
                 });
-            });
-            
-            saveTasks();
-            renderTasks();
-        } catch (error) {
-            console.error('خطأ في إضافة المهام:', error);
-            // إضافة النص كمهمة واحدة في حالة الخطأ
+            } catch (error) {
+                console.error('خطأ في إضافة المهام:', error);
+                // إضافة النص كمهمة واحدة في حالة الخطأ
+                tasks.unshift({
+                    id: Date.now().toString(),
+                    text,
+                    group: 'مهام عامة',
+                    completed: false,
+                    createdAt: new Date().toISOString()
+                });
+            } finally {
+                hideLoading();
+            }
+        } else {
+            // الوضع اليدوي: إضافة مهمة واحدة مباشرة
             tasks.unshift({
                 id: Date.now().toString(),
                 text,
@@ -53,11 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 completed: false,
                 createdAt: new Date().toISOString()
             });
-            saveTasks();
-            renderTasks();
-        } finally {
-            hideLoading();
         }
+        
+        saveTasks();
+        renderTasks();
     }
 
     function deleteTask(taskId) {

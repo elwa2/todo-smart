@@ -48,23 +48,58 @@ h1 {
 }
 
 .todo-input {
+    margin-bottom: 20px;
+}
+
+.input-mode-toggle {
+    display: flex;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-bottom: 8px;
+}
+
+.mode-toggle-btn {
+    background: var(--input-bg);
+    color: var(--text-secondary);
+    padding: 8px;
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode-toggle-btn:hover {
+    background: rgba(0, 200, 150, 0.1);
+    transform: translateY(-2px);
+}
+
+.mode-toggle-btn.active {
+    background: var(--accent-color);
+    color: var(--text-primary);
+}
+
+.input-container {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
 }
 
 .todo-input textarea {
     flex: 1;
-    padding: 12px 16px;
+    padding: 16px;
     border: 2px solid var(--border-color);
     border-radius: 12px;
     font-size: 16px;
     background: var(--input-bg);
     color: var(--text-primary);
     transition: all 0.3s ease;
-    min-height: 100px;
+    min-height: 120px;
     resize: vertical;
     font-family: 'Cairo', sans-serif;
+    line-height: 1.5;
 }
 
 .todo-input textarea:focus {
@@ -73,20 +108,15 @@ h1 {
     box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.2);
 }
 
-button {
-    background: var(--accent-color);
-    border: none;
-    padding: 12px 20px;
+#add-task {
+    padding: 12px;
+    width: 48px;
+    height: 48px;
     border-radius: 12px;
-    color: var(--text-primary);
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 200, 150, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-start;
 }
 
 .filters {
@@ -106,6 +136,22 @@ button:hover {
 .filter-btn.active {
     background: var(--accent-color);
     color: var(--text-primary);
+}
+
+button {
+    background: var(--accent-color);
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 200, 150, 0.3);
 }
 
 #task-list {

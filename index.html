@@ -11,8 +11,18 @@
     <div class="container">
         <h1>قائمة المهام الذكية</h1>
         <div class="todo-input">
-            <textarea id="task-input" placeholder="اكتب ما تريد تحويله إلى مهام...&#10;مثال: أريد تنظيم حفلة عيد ميلاد لابني"></textarea>
-            <button id="add-task"><i class="fas fa-magic"></i></button>
+            <div class="input-mode-toggle">
+                <button id="toggle-ai" class="mode-toggle-btn active" title="وضع المساعد">
+                    <i class="fas fa-robot"></i>
+                </button>
+                <button id="toggle-manual" class="mode-toggle-btn" title="وضع يدوي">
+                    <i class="fas fa-edit"></i>
+                </button>
+            </div>
+            <div class="input-container">
+                <textarea id="task-input" placeholder="اكتب ما تريد تحويله إلى مهام..."></textarea>
+                <button id="add-task"><i class="fas fa-magic"></i></button>
+            </div>
         </div>
         <div class="filters">
             <button class="filter-btn active" data-filter="all">الكل</button>
