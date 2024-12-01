@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>قائمة المهام الذكية</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>قائمة المهام الذكية</h1>
+        <div class="todo-input">
+            <textarea id="task-input" placeholder="اكتب ما تريد تحويله إلى مهام...&#10;مثال: أريد تنظيم حفلة عيد ميلاد لابني"></textarea>
+            <button id="add-task"><i class="fas fa-magic"></i></button>
+        </div>
+        <div class="filters">
+            <button class="filter-btn active" data-filter="all">الكل</button>
+            <button class="filter-btn" data-filter="active">قيد التنفيذ</button>
+            <button class="filter-btn" data-filter="completed">مكتملة</button>
+        </div>
+        <div id="task-groups"></div>
+        <div class="todo-footer">
+            <span id="tasks-count">0 مهام متبقية</span>
+            <button id="clear-completed">حذف المكتملة</button>
+        </div>
+    </div>
+    <div id="loading" class="loading-overlay">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">جاري تحليل المهام...</div>
+    </div>
+    <script src="gemini-api.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
