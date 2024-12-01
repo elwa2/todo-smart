@@ -99,7 +99,7 @@ cd arabic-todo-app
 
 ## 📞 الدعم والتواصل
 - لديك سؤال؟ [افتح issue](https://github.com/elwa2/arabic-todo-app/issues)
-- تابعنا على [Twitter](https://twitter.com/youraccount)
+- تابعنا على [Twitter](https://x.com/salla1zid)
 
 ## ⭐ قيّم المشروع
 إذا أعجبك المشروع، لا تنسَ إضافة نجمة ⭐ للمستودع!
@@ -113,6 +113,6 @@ cd arabic-todo-app
 ## English Summary
 Smart Arabic Todo App is an AI-powered task management web application. It features a modern dark theme UI, Arabic language support, and intelligent task conversion using Google Gemini AI. The app helps users organize their tasks efficiently with both AI-assisted and manual input modes.
 
-[View Demo](https://elwa2.github.io/arabic-todo-app) | [Report Bug](https://github.com/elwa2/arabic-todo-app/issues) | [Request Feature](https://github.com/elwa2/arabic-todo-app/issues)
+[View Demo](https://elwa2.github.io/todo-smart/) | [Report Bug](https://github.com/elwa2/arabic-todo-app/issues) | [Request Feature](https://github.com/elwa2/arabic-todo-app/issues)
 
 </div>
